@@ -1,0 +1,57 @@
+
+
+
+header h1 {
+    text-align: center;
+    background-color: rgb(75, 73, 73);
+    color: rgb(255, 255, 255);
+ 
+    background: linear-gradient(to right, rgb(0, 0, 0), rgb(133, 6, 6), rgb(135, 0, 0), rgb(152, 0, 0), rgb(133, 6, 6), rgb(0, 0, 0));
+    color: white;
+    padding: 18px;
+    border-color: black;
+    text-align: center;
+    border-style: solid;
+}
+
+
+
+
+header p {
+    text-align: center;
+    font-size: 20px;
+    
+   
+    padding: 0px;
+    
+    margin:1px ;
+    z-index: +2;
+    padding-left: 5px;
+}
+
+.circle-button {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid #000000; 
+    margin: 10px;
+}
+
+.circle-button img {
+    width: 100%;
+    height: 89%;
+    object-fit: cover;
+}
+
+
+body {
+    background-image: url('https://th.bing.com/th/id/R.5246d1942b431bc217e469e5d608ca8f?rik=9OP%2fBFPlIC5McA&riu=http%3a%2f%2fgetwallpapers.com%2fwallpaper%2ffull%2fc%2f3%2f9%2f397784.jpg&ehk=WbHlvjK8enSxjU1RmbT1OwFM8fw7fccceNLzuMLsCrs%3d&risl=&pid=ImgRaw&r=0');
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-position: center; 
+    color: #fff; 
