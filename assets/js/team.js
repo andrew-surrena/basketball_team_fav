@@ -34,7 +34,10 @@ const teamNames = {
 }
 console.log(teamNames.logo.length);
 let imgTags = document.querySelectorAll('img')
-console.log(imgTags.length);
+let h1Tags = document.querySelectorAll('h1')
+console.(h1Tags.length);
 for (let i = 0; i < imgTags.length; i++) {
     imgTags[i].setAttribute('src', teamNames.logo[i]);
+    h1Tags[i].textContent = teamNames.name[i]
+
   }
