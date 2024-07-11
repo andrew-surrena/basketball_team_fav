@@ -37,7 +37,7 @@ console.log(teamNames.name.indexOf("Detroit Pistons"))
 let imgTags = document.querySelectorAll('img')
 let h1Tags = document.querySelectorAll('h1')
 console.log(imgTags.length);
-imgTags.setAttribute(teamNames.logo[7])
+imgTags[0].setAttribute('src', teamNames.logo[7]);
 //for (let i = 0; i < imgTags.length; i++) {
  //   imgTags[i].setAttribute('src', teamNames.logo[i]);
  //   h1Tags[i].textContent = teamNames.name[i]
