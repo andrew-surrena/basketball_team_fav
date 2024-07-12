@@ -39,3 +39,18 @@ for (let i = 0; i < imgTags.length; i++) {
    imgTags[i].setAttribute('data-team', teamNames.name[i])
 
  }
+const favoriteTeamSelect = document.querySelector('.container');
+
+favoriteTeamSelect.addEventListener('click', 
+    function (event) {
+        const element = event.target;
+        if(element.matches('img')) {
+            let teamName = element.getAttribute('data-team');
+            let teamLogo = element.getAttribute('src');
+            localStorage.setItem('favName', JSON.stringify(teamName));
+            localStorage.setItem('favLogo', JSON.stringify(teamLogo));
+            location.assign('./team.html')
+        }
+        
+    }
+)
