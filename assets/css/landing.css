@@ -79,7 +79,7 @@ header p {
     }
 }
 
-/* Add a class to trigger the rotation animation */
+
 .circle-button.rotate {
     animation: rotate 1s ease-in-out forwards;
 }
