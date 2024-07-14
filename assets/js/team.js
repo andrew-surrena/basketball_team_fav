@@ -1,5 +1,5 @@
 const teamNames = {
-    name: ["Boston Celtics", "Brooklyn Nets", "New York Knicks", "Philadelphia 76ers", "Toronto Raptors", "Chicago Bulls", "Cleveland Cavaliers", "Detroit Pistons", "Indiana Pacers", "Milwaukee Bucks", "Atlanta Hawks", "Charlotte Hornets", "Miami Heat", "Orlando Magic", "Washington Wizards", "Denver Nuggets", "Minnesota Timberwolves", "Oklahoma City Thunder", "Portland Trail Blazers", "Utah Jazz", "Golden State Warriors", "LA Clippers", "Los Angeles Lakers", "Phoenix Suns", "Sacramento Kings", "Dallas Mavericks", "Houston Rockets", "Memphis Grizzlies", "New Orleans Plicans", "San Antonia Spurs"],
+    name: ["Boston Celtics", "Brooklyn Nets", "New York Knicks", "Philadelphia 76ers", "Toronto Raptors", "Chicago Bulls", "Cleveland Cavaliers", "Detroit Pistons", "Indiana Pacers", "Milwaukee Bucks", "Atlanta Hawks", "Charlotte Hornets", "Miami Heat", "Orlando Magic", "Washington Wizards", "Denver Nuggets", "Minnesota Timberwolves", "Oklahoma City Thunder", "Portland Trail Blazers", "Utah Jazz", "Golden State Warriors", "LA Clippers", "Los Angeles Lakers", "Phoenix Suns", "Sacramento Kings", "Dallas Mavericks", "Houston Rockets", "Memphis Grizzlies", "New Orleans Pelicans", "San Antonia Spurs"],
     logo: ["https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg", 
     "https://cdn.nba.com/logos/nba/1610612751/primary/L/logo.svg", 
     "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg", 
@@ -34,6 +34,38 @@ const teamNames = {
 }
 console.log(teamNames.logo.length);
 console.log(teamNames.name.indexOf("Detroit Pistons"))
-let imgTags = document.querySelectorAll('img')
-//let h1Tags = document.querySelectorAll('h1')
-console.log(imgTags.length);
+const team1 = document.querySelector('.team-1')
+const favTeamName = JSON.parse(localStorage.getItem('favName'))
+const favTeamLogo = JSON.parse(localStorage.getItem('favLogo'))
+console.log(favTeamName);
+console.log(favTeamLogo);
+
+//const myModal = document.getElementById('myModal')
+//const myInput = document.getElementById('myInput')
+//myModal.addEventListener('shown.bs.modal', () => {
+//    myInput.focus()
+//})
+const myModal = document.getElementById('myModal')
+const myInput = document.getElementById('myInput')
+
+//myModal.addEventListener('shown.bs.modal', () => {
+//  myInput.focus()
+//})
+
+// let aTags = document.querySelectorAll('a')
+// console.log(aTags.length);
+// ;
+//     if (aTags.length !== teamNames.length) {
+//         const addA = document.createElement('a');
+//         const myDropdownEl = document.querySelector('#myDropdown');
+//         myDropdownEl.appendChild(addA);
+//     } else {(let i = 0; i < aTags.length; i++) 
+//         aTags[i].textContent = teamNames.name[i]}
+for (let i = 0; i < teamNames.name.length; i++) {
+    const optionElement = document.createElement('option');
+    
+    optionElement.textContent = teamNames.name[i]
+    optionElement.value = teamNames.name[i]
+    
+    team1.append(optionElement)
+}
