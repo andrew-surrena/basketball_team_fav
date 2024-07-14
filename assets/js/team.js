@@ -69,3 +69,72 @@ for (let i = 0; i < teamNames.name.length; i++) {
     
     team1.append(optionElement)
 }
+
+const modalTitle = document.querySelector('.add-team')
+const titleElement = document.createElement('h1')
+titleElement.textContent = favTeamName
+modalTitle.append(`Who did the ${favTeamName} play?`)
+
+const opponent = document.querySelector('.team-1')
+const winSelect = document.querySelector('#win-check')
+const lossSelect = document.querySelector('#loss-check')
+const scoreInput = document.querySelector('#score-input')
+const updateRecord = document.querySelector('#submit-button')
+let opponents = []
+let wins = []
+let losses = []
+let scores = []
+updateRecord.addEventListener('submit', function (event) {
+// event.preventDefault()
+// console.log(opponent.value);
+// console.log(winSelect.checked);
+// console.log(lossSelect.checked);
+// console.log(scoreInput.value);
+if (winSelect.checked === lossSelect.checked) {
+    const errorMessage = document.createElement('p');
+    errorMessage.setAttribute('style', 'color: red');
+    errorMessage.setAttribute('id', 'error-message');
+    errorMessage.textContent = `Please select Yes or No`;
+    updateRecord.append(errorMessage)
+    event.preventDefault()}
+// else if (opponents.value !== '') {
+//     opponents = JSON.parse(localStorage.getItem('opponents'))
+//     wins = JSON.parse(localStorage.getItem('wins'))
+//     losses = JSON.parse(localStorage.getItem(losses))
+//     scores = JSON.parse(localStorage.getItem(scores))
+//     opponents.push(opponent.value)
+//     wins.push(winSelect.checked)
+//     losses.push(lossSelect.checked)
+//     scores.push(scoreInput.value)
+//     localStorage.setItem('opponents', JSON.stringify(opponents))
+//     localStorage.setItem('wins', JSON.stringify(wins));
+//     localStorage.setItem('losses', JSON.stringify(losses))
+//     localStorage.setItem('scores', JSON.stringify(scores))
+// }
+else {
+event.preventDefault()
+console.log(opponent.value);
+console.log(winSelect.checked);
+console.log(lossSelect.checked);
+console.log(scoreInput.value);
+opponents.push(opponent.value)
+wins.push(winSelect.checked)
+losses.push(lossSelect.checked)
+scores.push(scoreInput.value)
+console.log(opponent.value);
+console.log(winSelect.checked);
+console.log(lossSelect.checked);
+console.log(scoreInput.value);
+localStorage.setItem('opponents', JSON.stringify(opponents))
+localStorage.setItem('wins', JSON.stringify(wins));
+localStorage.setItem('losses', JSON.stringify(losses))
+localStorage.setItem('scores', JSON.stringify(scores))
+}return})
+
+const closeModal = document.body
+closeModal.addEventListener('click', function(event) {
+    const pElement = document.getElementById('error-message');
+    pElement.remove()
+})
+
+
