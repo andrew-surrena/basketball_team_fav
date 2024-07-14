@@ -45,6 +45,22 @@ console.log(favTeamLogo);
 //myModal.addEventListener('shown.bs.modal', () => {
 //    myInput.focus()
 //})
+
+// Add team name to html
+const addTeam = document.getElementById('fav-team')
+const addLogo = document.getElementById('fav-logo')
+const addImgElement = document.createElement('img')
+const addH1Element = document.createElement('h1')
+addH1Element.textContent = `${favTeamName} Team Tracker`;
+addH1Element.setAttribute("style", "font-size: 350%")
+addImgElement.setAttribute('src', favTeamLogo)
+addImgElement.setAttribute('style', 'width: 150px; height:150px')
+addLogo.append(addImgElement)
+addTeam.append(addH1Element)
+
+
+
+
 const myModal = document.getElementById('myModal')
 const myInput = document.getElementById('myInput')
 
@@ -131,10 +147,120 @@ localStorage.setItem('losses', JSON.stringify(losses))
 localStorage.setItem('scores', JSON.stringify(scores))
 }return})
 
-const closeModal = document.body
+const closeModal = document.getElementById('close-btn')
 closeModal.addEventListener('click', function(event) {
     const pElement = document.getElementById('error-message');
-    pElement.remove()
+// if (pElement.value !== '') {
+// pElement.remove()}
+opponents = JSON.parse(localStorage.getItem('opponents'))
+wins = JSON.parse(localStorage.getItem('wins'))
+losses = JSON.parse(localStorage.getItem('losses'))
+const updateWins = document.getElementById('wins')
+const updateLosses = document.getElementById('losses')
+
+function countWins(wins) {
+    let numberOfWins = 0;
+    for (var i = 0; i < wins.length; i++) {
+       if (wins[i] === true) {
+          numberOfWins++;
+       }
+    }
+    return numberOfWins;
+}
+
+function countLosses(losses) {
+    let numberOfLosses = 0;
+    for (var i = 0; i < losses.length; i++) {
+       if (losses[i] === true) {
+          numberOfLosses++;
+       }
+    }
+    return numberOfLosses;
+}
+
+let numberOfWins = countWins(wins);
+let numberOfLosses = countLosses(losses);
+
+console.log(numberOfWins);
+console.log(numberOfLosses);
+
+if (updateWins && numberOfWins != null) {updateWins.innerHTML=`${numberOfWins}`;}
+if (updateLosses && numberOfLosses != null) {updateLosses.innerHTML=`${numberOfLosses}`;}
+
+    for (let i = 0; i < opponents.length; i++) {
+        const game = opponents[i];
+    
+    
+        const createCard = document.createElement('div')
+    const cardPlacement = document.getElementById('game-card')
+    createCard.setAttribute('class', "card m-2")
+    createCard.setAttribute('style', "width: 32.15%")
+    createCard.setAttribute('id', `${opponents.indexOf(game[i])}-div`)
+    cardPlacement.append(createCard)
+    const createCard2 = document.createElement('div')
+    const cardPlacement2 = document.getElementById(`${opponents.indexOf(game[i])}-div`)
+    createCard2.setAttribute('class', 'card-body')
+    createCard2.setAttribute('id', `${opponents.indexOf(game[i])}-h5-element`)
+    cardPlacement2.append(createCard2)
+    const createCard3 = document.createElement('h5')
+    const cardPlacement3 = document.getElementById(`${opponents.indexOf(game[i])}-h5-element`)
+    createCard3.setAttribute('class', 'card-title')
+    createCard3.setAttribute('id', `${opponents.indexOf(game[i])}-h6-element`)
+    // ToDo: add array for game # and link:
+    let gameNumber = game.indexOf(game[i])+1
+    createCard3.textContent = `Game ${gameNumber}`
+    cardPlacement3.append(createCard3)
+    const createCard4 = document.createElement('h6')
+    const cardPlacement4 = document.getElementById(`${opponents.indexOf(game[i])}-h5-element`)
+    createCard4.setAttribute('class', 'card-subtitle mb-2 text-body-secondary')
+    createCard4.setAttribute('id', `${opponents.indexOf(game[i])}-third-div`)
+    createCard4.textContent = `${favTeamName} vs ${opponents[i]}`
+    cardPlacement4.append(createCard4)
+    const createCard5 = document.createElement('div')
+    const cardPlacement5 = document.getElementById(`${opponents.indexOf(game[i])}-h5-element`)
+    createCard5.setAttribute('style', 'display: flex; flex-direction:row ;justify-content: space-between; align-items: center;')
+    createCard5.setAttribute('id', `${opponents.indexOf(game[i])}-p-element`)
+    cardPlacement5.append(createCard5)
+    const createCard6 = document.createElement('p')
+    const cardPlacement6 = document.getElementById(`${opponents.indexOf(game[i])}-p-element`)
+    createCard6.setAttribute('class', 'card-text fs-3')
+    createCard6.setAttribute('id', `${opponents.indexOf(game[i])}-fourth-div`)
+    // ToDo: add condition for win/loss
+    for (let i = 0; i < wins.length; i++) {
+        const targetWin = wins[i];
+        if (targetWin === true) {createCard6.textContent = `We Won! 🥳`
+        } else { createCard6.textContent = `We Lost 😭`}
+    }
+    cardPlacement6.append(createCard6)
+    const createCard7 = document.createElement('div')
+    const cardPlacement7 = document.getElementById(`${opponents.indexOf(game[i])}-fourth-div`)
+    createCard7.setAttribute('style', 'display:flex; justify-content:space-evenly; width: 150px;')
+    createCard7.setAttribute('id', `${opponents.indexOf(game[i])}-second-p`)
+    cardPlacement6.append(createCard7)
+    const createCard8=document.createElement('p')
+    const addScore=document.createElement('p')
+    const cardPlacement8=document.getElementById(`${opponents.indexOf(game[i])}-second-p`)
+    createCard8.setAttribute('class', 'card-text fw-bold fs-5')
+    createCard8.textContent=`Score:`
+    addScore.setAttribute('class', 'card-text fs-5')
+    scores = JSON.parse(localStorage.getItem('scores'))
+    addScore.textContent=scores
+    cardPlacement8.append(createCard8)
+    cardPlacement8.append(addScore)
+}
 })
 
 
+                                                // <div class="card m-2" style = "width: 32.15%;">
+                                                //     <div class="card-body">
+                                                //         <h5 class="card-title">Game 1</h5>
+                                                //         <h6 class="card-subtitle mb-2 text-body-secondary">Oklahoma City Thunder vs Golden State Warriors</h6>
+                                                //         <div style="display: flex; flex-direction:row ;justify-content: space-between; align-items: center;">
+                                                //             <p class="card-text fs-3">We won! 🥳</p>
+                                                //             <div style="display:flex; justify-content:space-evenly; width: 150px;">
+                                                //                 <p class="card-text fw-bold fs-5">Score: </p>
+                                                //                 <p class="card-text fs-5"> 123-114</p>
+                                                //             </div>
+                                                //         </div>
+                                                //     </div>
+                                                // </div>
