@@ -1,6 +1,71 @@
 .detroit {
-color: #0067B1
-}
+
+  color: #0067B1
+  }
+  
+  .logo {
+      size-adjust: 10%;
+  }
+  /* Dropdown Button */
+  .dropbtn {
+      background-color: #3498DB;
+      color: white;
+      padding: 16px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+    }
+    
+    /* Dropdown button on hover & focus */
+    .dropbtn:hover, .dropbtn:focus {
+      background-color: #2980B9;
+    }
+    
+    /* The container <div> - needed to position the dropdown content */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+    
+    /* Links inside the dropdown */
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      
+    }
+    
+    /* Change color of dropdown links on hover */
+    .dropdown-content a:hover {background-color: #ddd;}
+    
+    /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+    .show {display:block;}
+  
+    body {
+      background-image: url('https://th.bing.com/th/id/R.5246d1942b431bc217e469e5d608ca8f?rik=9OP%2fBFPlIC5McA&riu=http%3a%2f%2fgetwallpapers.com%2fwallpaper%2ffull%2fc%2f3%2f9%2f397784.jpg&ehk=WbHlvjK8enSxjU1RmbT1OwFM8fw7fccceNLzuMLsCrs%3d&risl=&pid=ImgRaw&r=0');
+      background-size: cover; 
+      background-repeat: no-repeat;
+      background-attachment: fixed; 
+      background-position: center; 
+      color: #000000; 
+  }
+  header {
+    color: rgb(255, 255, 255);
+  }
+  .black-text{
+    color: #000000;
+  }
 
 .logo {
     size-adjust: 10%;
@@ -52,3 +117,4 @@ color: #0067B1
   .show {display:block;}
 
   
+
