@@ -45,9 +45,16 @@ Our goal is to create a web page for tracking your favorite NBA teams. This hand
 
 ## Usage
 - Follow url to visit landing page:
-```
-*Insert URL
-```
+    - [Click to visit deployed webpage](https://andrew-surrena.github.io/basketball_team_fav/)
+
+<img src='./assets/img/qr-code (2).png' style = 'width: 150px ; height: 150px'>
+
+- Follow url to visit GitHub repo:
+    - [Click to visit GitHub Repo](https://github.com/andrew-surrena/basketball_team_fav)
+
+<img src='./assets/img/qr-code (1).png' style = 'width: 150px ; height: 150px'>
+
+### Instructions
 - Click logo to select favorite team
 - Click "Add Last Game" to update game data
 - Select opposing team from drop-down menu
