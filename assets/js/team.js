@@ -70,6 +70,10 @@ for (let i = 0; i < teamNames.name.length; i++) {
 const modalTitle = document.querySelector('.add-team')
 const titleElement = document.createElement('h1')
 titleElement.textContent = favTeamName
+
+modalTitle.setAttribute('class','black-text')
+
+
 modalTitle.append(`Who did the ${favTeamName} play?`)
 
 const opponent = document.querySelector('.team-1')
