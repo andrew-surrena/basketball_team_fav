@@ -54,3 +54,5 @@ favoriteTeamSelect.addEventListener('click',
         
     }
 )
+
+window.onload = function() {localStorage.clear()}

@@ -40,12 +40,6 @@ const favTeamLogo = JSON.parse(localStorage.getItem('favLogo'))
 console.log(favTeamName);
 console.log(favTeamLogo);
 
-//const myModal = document.getElementById('myModal')
-//const myInput = document.getElementById('myInput')
-//myModal.addEventListener('shown.bs.modal', () => {
-//    myInput.focus()
-//})
-
 // Add team name to html
 const addTeam = document.getElementById('fav-team')
 const addLogo = document.getElementById('fav-logo')
@@ -64,19 +58,6 @@ addTeam.append(addH1Element)
 const myModal = document.getElementById('myModal')
 const myInput = document.getElementById('myInput')
 
-//myModal.addEventListener('shown.bs.modal', () => {
-//  myInput.focus()
-//})
-
-// let aTags = document.querySelectorAll('a')
-// console.log(aTags.length);
-// ;
-//     if (aTags.length !== teamNames.length) {
-//         const addA = document.createElement('a');
-//         const myDropdownEl = document.querySelector('#myDropdown');
-//         myDropdownEl.appendChild(addA);
-//     } else {(let i = 0; i < aTags.length; i++) 
-//         aTags[i].textContent = teamNames.name[i]}
 for (let i = 0; i < teamNames.name.length; i++) {
     const optionElement = document.createElement('option');
     
@@ -105,11 +86,7 @@ let wins = []
 let losses = []
 let scores = []
 updateRecord.addEventListener('submit', function (event) {
-// event.preventDefault()
-// console.log(opponent.value);
-// console.log(winSelect.checked);
-// console.log(lossSelect.checked);
-// console.log(scoreInput.value);
+
 if (winSelect.checked === lossSelect.checked) {
     const errorMessage = document.createElement('p');
     errorMessage.setAttribute('style', 'color: red');
@@ -117,21 +94,12 @@ if (winSelect.checked === lossSelect.checked) {
     errorMessage.textContent = `Please select Yes or No`;
     updateRecord.append(errorMessage)
     event.preventDefault()}
-// else if (opponents.value !== '') {
-//     opponents = JSON.parse(localStorage.getItem('opponents'))
-//     wins = JSON.parse(localStorage.getItem('wins'))
-//     losses = JSON.parse(localStorage.getItem(losses))
-//     scores = JSON.parse(localStorage.getItem(scores))
-//     opponents.push(opponent.value)
-//     wins.push(winSelect.checked)
-//     losses.push(lossSelect.checked)
-//     scores.push(scoreInput.value)
-//     localStorage.setItem('opponents', JSON.stringify(opponents))
-//     localStorage.setItem('wins', JSON.stringify(wins));
-//     localStorage.setItem('losses', JSON.stringify(losses))
-//     localStorage.setItem('scores', JSON.stringify(scores))
-// }
+
 else {
+let opponents = JSON.parse(localStorage.getItem('opponents')) || [];
+let wins = JSON.parse(localStorage.getItem('wins')) || [];
+let losses = JSON.parse(localStorage.getItem('losses')) || [];
+let scores = JSON.parse(localStorage.getItem('scores')) || [];
 event.preventDefault()
 console.log(opponent.value);
 console.log(winSelect.checked);
@@ -149,15 +117,98 @@ localStorage.setItem('opponents', JSON.stringify(opponents))
 localStorage.setItem('wins', JSON.stringify(wins));
 localStorage.setItem('losses', JSON.stringify(losses))
 localStorage.setItem('scores', JSON.stringify(scores))
+const confirmation = document.createElement('p')
+confirmation.setAttribute("style","color: green")
+confirmation.setAttribute('id', 'confirmation')
+confirmation.textContent = 'Record Submitted 🎉 Press "Close" to return to tracker'
+updateRecord.append(confirmation)
 }return})
 
 const closeModal = document.getElementById('close-btn')
 closeModal.addEventListener('click', function(event) {
-    const pElement = document.getElementById('error-message');
-// if (pElement.value !== '') {
-// pElement.remove()}
-opponents = JSON.parse(localStorage.getItem('opponents'))
-wins = JSON.parse(localStorage.getItem('wins'))
+    location.reload();})
+    window.onload = function(){
+
+    const removeConfirmation = document.getElementById('confirmation')
+    if (removeConfirmation) {
+        removeConfirmation.textContent="";
+    }
+    const removeErrorMessage = document.getElementById('error-message')
+    if (removeErrorMessage) {
+        removeErrorMessage.textContent="";
+        removeErrorMessage.textContent="";
+    };
+
+    const opponents = JSON.parse(localStorage.getItem("opponents"))
+    const wins = JSON.parse(localStorage.getItem('wins'))
+    const scores = JSON.parse(localStorage.getItem('scores'))
+    
+    let games = [];
+    
+    for (let i = 0; i < opponents.length; i++) {
+        const targetOpponent = opponents[i];
+        let gameText = wins[i] === true ? `We Won! 🥳` : `We Lost 😭`;
+        let targetScore = scores[i];
+        games.push({
+            title: `Game ${i+1}`,
+            subtitle: `Oklahoma City Thunder vs ${targetOpponent}`,
+            text: gameText,
+            score: targetScore
+        });
+    }
+    
+    const parentElement = document.getElementById('game-card');
+    
+    games.forEach(game => {
+        // Create card
+        const card = document.createElement('div');
+        card.setAttribute('class', 'card m-2');
+    card.setAttribute('style', 'width: 32.15%;');
+    const cardBody = document.createElement('div');
+    cardBody.setAttribute('class', 'card-body');
+
+    // Add Game #
+    const cardTitle = document.createElement('h5');
+    cardTitle.setAttribute('class', 'card-title');
+    cardTitle.textContent = game.title;
+
+    // Add opponent
+    const cardSubtitle = document.createElement('h6');
+    cardSubtitle.setAttribute('class', 'card-subtitle mb-2 text-body-secondary');
+    cardSubtitle.textContent = game.subtitle;
+
+    // Add win/loss text
+    const cardText = document.createElement('p');
+    cardText.setAttribute('class', 'card-text fs-3');
+    cardText.textContent = game.text;
+
+    // Create another div
+    const scoreContainer = document.createElement('div');
+    scoreContainer.setAttribute('style', 'display:flex; justify-content:space-evenly; width: 150px;');
+
+    // Create score element
+    const scoreLabel = document.createElement('p');
+    scoreLabel.setAttribute('class', 'card-text fw-bold fs-5');
+    scoreLabel.textContent = 'Score: ';
+    const scoreValue = document.createElement('p');
+    scoreValue.setAttribute('class', 'card-text fs-5');
+    scoreValue.textContent = game.score;
+
+    // Add to webpage
+    scoreContainer.appendChild(scoreLabel);
+    scoreContainer.appendChild(scoreValue);
+    cardBody.appendChild(cardTitle);
+    cardBody.appendChild(cardSubtitle);
+    cardBody.appendChild(cardText);
+    cardBody.appendChild(scoreContainer);
+    card.appendChild(cardBody);
+    parentElement.appendChild(card);
+});
+    
+
+
+
+// count wins & losses
 losses = JSON.parse(localStorage.getItem('losses'))
 const updateWins = document.getElementById('wins')
 const updateLosses = document.getElementById('losses')
@@ -173,6 +224,9 @@ function countWins(wins) {
 }
 
 function countLosses(losses) {
+    if (!losses) {
+        return 0; // Return 0 if losses is null or undefined
+    }
     let numberOfLosses = 0;
     for (var i = 0; i < losses.length; i++) {
        if (losses[i] === true) {
@@ -182,6 +236,7 @@ function countLosses(losses) {
     return numberOfLosses;
 }
 
+// add wins & losses to webpage
 let numberOfWins = countWins(wins);
 let numberOfLosses = countLosses(losses);
 
@@ -190,81 +245,6 @@ console.log(numberOfLosses);
 
 if (updateWins && numberOfWins != null) {updateWins.innerHTML=`${numberOfWins}`;}
 if (updateLosses && numberOfLosses != null) {updateLosses.innerHTML=`${numberOfLosses}`;}
-
-    for (let i = 0; i < opponents.length; i++) {
-        const game = opponents[i];
-    
-    
-        const createCard = document.createElement('div')
-    const cardPlacement = document.getElementById('game-card')
-    createCard.setAttribute('class', "card m-2")
-    createCard.setAttribute('style', "width: 32.15%")
-    createCard.setAttribute('id', `${opponents.indexOf(game[i])}-div`)
-    cardPlacement.append(createCard)
-    const createCard2 = document.createElement('div')
-    const cardPlacement2 = document.getElementById(`${opponents.indexOf(game[i])}-div`)
-    createCard2.setAttribute('class', 'card-body')
-    createCard2.setAttribute('id', `${opponents.indexOf(game[i])}-h5-element`)
-    cardPlacement2.append(createCard2)
-    const createCard3 = document.createElement('h5')
-    const cardPlacement3 = document.getElementById(`${opponents.indexOf(game[i])}-h5-element`)
-    createCard3.setAttribute('class', 'card-title')
-    createCard3.setAttribute('id', `${opponents.indexOf(game[i])}-h6-element`)
-    // ToDo: add array for game # and link:
-    let gameNumber = game.indexOf(game[i])+1
-    createCard3.textContent = `Game ${gameNumber}`
-    cardPlacement3.append(createCard3)
-    const createCard4 = document.createElement('h6')
-    const cardPlacement4 = document.getElementById(`${opponents.indexOf(game[i])}-h5-element`)
-    createCard4.setAttribute('class', 'card-subtitle mb-2 text-body-secondary')
-    createCard4.setAttribute('id', `${opponents.indexOf(game[i])}-third-div`)
-    createCard4.textContent = `${favTeamName} vs ${opponents[i]}`
-    cardPlacement4.append(createCard4)
-    const createCard5 = document.createElement('div')
-    const cardPlacement5 = document.getElementById(`${opponents.indexOf(game[i])}-h5-element`)
-    createCard5.setAttribute('style', 'display: flex; flex-direction:row ;justify-content: space-between; align-items: center;')
-    createCard5.setAttribute('id', `${opponents.indexOf(game[i])}-p-element`)
-    cardPlacement5.append(createCard5)
-    const createCard6 = document.createElement('p')
-    const cardPlacement6 = document.getElementById(`${opponents.indexOf(game[i])}-p-element`)
-    createCard6.setAttribute('class', 'card-text fs-3')
-    createCard6.setAttribute('id', `${opponents.indexOf(game[i])}-fourth-div`)
-    // ToDo: add condition for win/loss
-    for (let i = 0; i < wins.length; i++) {
-        const targetWin = wins[i];
-        if (targetWin === true) {createCard6.textContent = `We Won! 🥳`
-        } else { createCard6.textContent = `We Lost 😭`}
-    }
-    cardPlacement6.append(createCard6)
-    const createCard7 = document.createElement('div')
-    const cardPlacement7 = document.getElementById(`${opponents.indexOf(game[i])}-fourth-div`)
-    createCard7.setAttribute('style', 'display:flex; justify-content:space-evenly; width: 150px;')
-    createCard7.setAttribute('id', `${opponents.indexOf(game[i])}-second-p`)
-    cardPlacement6.append(createCard7)
-    const createCard8=document.createElement('p')
-    const addScore=document.createElement('p')
-    const cardPlacement8=document.getElementById(`${opponents.indexOf(game[i])}-second-p`)
-    createCard8.setAttribute('class', 'card-text fw-bold fs-5')
-    createCard8.textContent=`Score:`
-    addScore.setAttribute('class', 'card-text fs-5')
-    scores = JSON.parse(localStorage.getItem('scores'))
-    addScore.textContent=scores
-    cardPlacement8.append(createCard8)
-    cardPlacement8.append(addScore)
 }
-})
 
-
-                                                // <div class="card m-2" style = "width: 32.15%;">
-                                                //     <div class="card-body">
-                                                //         <h5 class="card-title">Game 1</h5>
-                                                //         <h6 class="card-subtitle mb-2 text-body-secondary">Oklahoma City Thunder vs Golden State Warriors</h6>
-                                                //         <div style="display: flex; flex-direction:row ;justify-content: space-between; align-items: center;">
-                                                //             <p class="card-text fs-3">We won! 🥳</p>
-                                                //             <div style="display:flex; justify-content:space-evenly; width: 150px;">
-                                                //                 <p class="card-text fw-bold fs-5">Score: </p>
-                                                //                 <p class="card-text fs-5"> 123-114</p>
-                                                //             </div>
-                                                //         </div>
-                                                //     </div>
-                                                // </div>
+                                                
