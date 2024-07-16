@@ -46,7 +46,7 @@ const addLogo = document.getElementById('fav-logo')
 const addImgElement = document.createElement('img')
 const addH1Element = document.createElement('h1')
 addH1Element.textContent = `${favTeamName} Team Tracker`;
-addH1Element.setAttribute("class", "fav-team")
+addH1Element.setAttribute("class", "fav-team text-center")
 addImgElement.setAttribute('src', favTeamLogo)
 addImgElement.setAttribute('style', 'width: 150px; height:150px')
 addLogo.append(addImgElement)
