@@ -109,6 +109,22 @@
     display: block;
     
   }
+
+  .header-alignment{
+    display: flex; justify-content: space-between;
+  }
+
+  .record-alignment{
+    display:flex; align-items: center; flex-direction: column;
+  }
+
+  .card-size {
+    width: 32%;
+  }
+
+  .fav-team{
+    font-size: 350%;
+  }
   
   /* Change color of dropdown links on hover */
   .dropdown-content a:hover {background-color: #ddd;}
@@ -118,3 +134,33 @@
 
   
 
+  @media screen and (max-width: 1199px) {
+.card-size {
+  width: 48%;
+}
+    }
+    @media screen and (max-width: 799px) {
+    .card-size {
+      width: 95%
+    }
+    }
+@media screen and (max-width: 1155px) {
+  .header-alignment{
+    display: flex;justify-content: center;flex-wrap: wrap;
+  }
+
+  .record-alignment{
+    display: flex;justify-content: center;align-items: center; flex-direction: row;
+  }
+}
+
+@media screen and (max-width: 766px) {
+  .fav-team {
+    font-size: 250%;
+  }
+}
+@media screen and (max-width: 552px) {
+  .fav-team {
+    font-size: 175%;
+  }
+}

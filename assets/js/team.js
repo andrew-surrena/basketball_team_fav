@@ -46,7 +46,7 @@ const addLogo = document.getElementById('fav-logo')
 const addImgElement = document.createElement('img')
 const addH1Element = document.createElement('h1')
 addH1Element.textContent = `${favTeamName} Team Tracker`;
-addH1Element.setAttribute("style", "font-size: 350%")
+addH1Element.setAttribute("class", "fav-team")
 addImgElement.setAttribute('src', favTeamLogo)
 addImgElement.setAttribute('style', 'width: 150px; height:150px')
 addLogo.append(addImgElement)
@@ -162,8 +162,7 @@ closeModal.addEventListener('click', function(event) {
     games.forEach(game => {
         // Create card
         const card = document.createElement('div');
-        card.setAttribute('class', 'card m-2');
-    card.setAttribute('style', 'width: 32.15%;');
+        card.setAttribute('class', 'card m-2 card-size');
     const cardBody = document.createElement('div');
     cardBody.setAttribute('class', 'card-body');
 
