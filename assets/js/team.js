@@ -151,7 +151,7 @@ closeModal.addEventListener('click', function(event) {
         let targetScore = scores[i];
         games.push({
             title: `Game ${i+1}`,
-            subtitle: `Oklahoma City Thunder vs ${targetOpponent}`,
+            subtitle: `${favTeamName} vs ${targetOpponent}`,
             text: gameText,
             score: targetScore
         });
