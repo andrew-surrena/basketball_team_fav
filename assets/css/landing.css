@@ -1,13 +1,12 @@
 
 header h1 {
     text-align: center;
-    background-color: rgb(75, 73, 73);
+    
     color: rgb(255, 255, 255);
- 
-    background: linear-gradient(to right, rgb(0, 0, 0), rgb(133, 6, 6), rgb(135, 0, 0), rgb(152, 0, 0), rgb(133, 6, 6), rgb(0, 0, 0));
+ border-color: rgb(133, 6, 6) ;
+
     color: white;
     padding: 18px;
-    border-color: black;
     text-align: center;
     border-style: solid;
 }
@@ -98,4 +97,9 @@ body {
     background-attachment: fixed; 
     background-position: center; 
     color: #fff; 
+}
+
+.header-styling {
+    background: linear-gradient(to right, rgb(0, 0, 0), rgb(133, 6, 6), rgb(135, 0, 0), rgb(152, 0, 0), rgb(133, 6, 6), rgb(0, 0, 0));
+    border-color: black;
 }

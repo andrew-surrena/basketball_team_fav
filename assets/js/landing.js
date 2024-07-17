@@ -54,5 +54,6 @@ favoriteTeamSelect.addEventListener('click',
         
     }
 )
-
-window.onload = function() {localStorage.clear()}
+const clearGameData = document.querySelector(".clear-data");
+clearGameData.addEventListener('click', localStorage.clear()
+)
